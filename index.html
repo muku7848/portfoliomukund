@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mukund Soni | AI Developer Portfolio</title>
+    <style>
+        :root {
+            --bg: #050308;
+            --bg2: #0b0710;
+            --purple: #8b2cff;
+            --purple2: #c026ff;
+            --red: #ff1744;
+            --red2: #ff3b5c;
+            --white: #fff;
+            --muted: #aaa4b4;
+            --line: rgba(255, 255, 255, .11);
+            --glass: rgba(255, 255, 255, .045);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: Inter, Segoe UI, Arial, sans-serif;
+            background:
+                radial-gradient(circle at 80% 8%, rgba(139, 44, 255, .18), transparent 28%),
+                radial-gradient(circle at 8% 35%, rgba(255, 23, 68, .12), transparent 25%),
+                var(--bg);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: .25;
+            background-image: linear-gradient(rgba(255, 255, 255, .025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, .025) 1px, transparent 1px);
+            background-size: 55px 55px;
+            mask-image: linear-gradient(to bottom, black, transparent);
+        }
+
+        .container {
+            width: min(1120px, 90%);
+            margin: auto
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 20;
+            background: rgba(5, 3, 8, .72);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .nav {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 950;
+            letter-spacing: -1px
+        }
+
+        .logo span {
+            color: var(--red)
+        }
+
+        .nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none
+        }
+
+        .nav a {
+            font-size: 14px;
+            font-weight: 700;
+            color: #d8d3dc;
+            transition: .25s
+        }
+
+        .nav a:hover {
+            color: var(--red)
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            align-items: center;
+            padding-top: 80px
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            align-items: center
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 13px;
+            border: 1px solid rgba(192, 38, 255, .4);
+            border-radius: 50px;
+            background: rgba(139, 44, 255, .08);
+            color: #d7b7ff;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 22px
+        }
+
+        .eyebrow i {
+            width: 7px;
+            height: 7px;
+            background: var(--red);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--red)
+        }
+
+        h1 {
+            font-size: clamp(52px, 8vw, 92px);
+            line-height: .92;
+            letter-spacing: -5px;
+            margin-bottom: 24px
+        }
+
+        .gradient {
+            background: linear-gradient(100deg, var(--purple2), var(--red));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent
+        }
+
+        .hero-text {
+            font-size: 18px;
+            color: var(--muted);
+            max-width: 650px;
+            margin-bottom: 32px
+        }
+
+        .hero-info {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1000px;
+            margin: 4px 0 32px;
+            border: 1px solid rgba(192, 38, 255, .28);
+            border-radius: 18px;
+            overflow: hidden;
+            background: linear-gradient(110deg, rgba(139, 44, 255, .12), rgba(255, 23, 68, .07));
+            box-shadow: 0 18px 50px rgba(0, 0, 0, .28);
+        }
+
+        .hero-info-item {
+            padding: 18px 20px;
+            border-right: 1px solid var(--line);
+            position: relative;
+        }
+
+        .hero-info-item:last-child {
+            border-right: 0
+        }
+
+        .info-label {
+            display: block;
+            color: #d7b7ff;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 1.7px;
+            margin-bottom: 5px;
+        }
+
+        .hero-info-item strong {
+            font-size: 14px;
+            color: #f5f2f8
+        }
+
+        .mini-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 10px var(--red);
+            margin-right: 6px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 13px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            padding: 13px 21px;
+            border-radius: 10px;
+            font-weight: 850;
+            border: 1px solid var(--line);
+            transition: .3s
+        }
+
+        .primary {
+            background: linear-gradient(100deg, var(--purple), var(--red));
+            box-shadow: 0 12px 35px rgba(139, 44, 255, .2)
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 45px rgba(255, 23, 68, .2)
+        }
+
+        .secondary {
+            background: rgba(255, 255, 255, .035)
+        }
+
+        .secondary:hover {
+            border-color: var(--purple);
+            color: #d8baff
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(139, 44, 255, .5)
+        }
+
+        .card h3 {
+            font-size: 21px;
+            margin-bottom: 10px
+        }
+
+        .card p {
+            color: var(--muted)
+        }
+
+        .accent {
+            color: #ff5271;
+            font-weight: 800
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px
+        }
+
+        .skill {
+            padding: 24px 15px;
+            text-align: center;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--glass);
+            transition: .3s
+        }
+
+        .skill:hover {
+            transform: translateY(-7px);
+            border-color: var(--red);
+            box-shadow: 0 15px 35px rgba(255, 23, 68, .08)
+        }
+
+        .skill .symbol {
+            font-size: 30px;
+            margin-bottom: 8px
+        }
+
+        .skill h3 {
+            font-size: 16px
+        }
+
+        .skill p {
+            font-size: 11px;
+            color: var(--muted)
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px
+        }
+
+        .project {
+            padding: 28px;
+            border-radius: 20px;
+            background: linear-gradient(145deg, rgba(139, 44, 255, .09), rgba(255, 23, 68, .035));
+            border: 1px solid var(--line);
+            transition: .3s
+        }
+
+        .project:hover {
+            transform: translateY(-6px);
+            border-color: rgba(192, 38, 255, .55)
+        }
+
+        .num {
+            font-size: 11px;
+            color: var(--red);
+            font-weight: 950;
+            letter-spacing: 1px
+        }
+
+        .project h3 {
+            font-size: 23px;
+            margin: 8px 0
+        }
+
+        .project p {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        .tags {
+            display: flex;
+            gap: 7px;
+            flex-wrap: wrap;
+            margin-top: 17px
+        }
+
+        .tag {
+            font-size: 10px;
+            font-weight: 800;
+            padding: 5px 9px;
+            border-radius: 5px;
+            background: rgba(139, 44, 255, .11);
+            color: #d8bcff
+        }
+
+        .vision {
+            padding: 48px;
+            border-radius: 25px;
+            border: 1px solid var(--line);
+            background: linear-gradient(120deg, rgba(139, 44, 255, .14), rgba(255, 23, 68, .09))
+        }
+
+        .vision h2 {
+            font-size: 34px;
+            margin-bottom: 10px
+        }
+
+        .vision p {
+            color: var(--muted);
+            max-width: 820px
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            background: #030207;
+            text-align: center;
+            padding: 42px 0
+        }
+
+        footer h3 {
+            font-size: 22px
+        }
+
+        footer h3 span {
+            color: var(--red)
+        }
+
+        footer p {
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 5px
+        }
+
+        @media(max-width:850px) {
+
+            .hero-grid,
+            .about,
+            .projects {
+                grid-template-columns: 1fr
+            }
+
+            .skills {
+                grid-template-columns: 1fr 1fr
+            }
+
+            .nav ul {
+                display: none
+            }
+
+            h1 {
+                letter-spacing: -3px
+            }
+
+            .hero {
+                padding-top: 120px
+            }
+        }
+
+        @media(max-width:500px) {
+            .skills {
+                grid-template-columns: 1fr 1fr
+            }
+
+            section {
+                padding: 75px 0
+            }
+
+            .profile {
+                padding: 25px
+            }
+
+            .avatar {
+                width: 145px;
+                height: 145px;
+                font-size: 48px
+            }
+
+            .section-head h2 {
+                font-size: 34px
+            }
+
+            .vision {
+                padding: 30px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="container nav">
+            <a class="logo" href="#">MUKUND<span>.</span></a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#vision">Vision</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <div class="eyebrow"><i></i> B.Tech CSE (AI) • FIRST YEAR</div>
+                <h1>I'm <span class="gradient">Mukund</span><br>Developer.</h1>
+                <p class="hero-text">
+                    A passionate Computer Science student at NIAT × Geeta University,
+                    focused on coding, web development, building projects, and learning
+                    the technologies that shape the future.
+                </p>
+                <div class="hero-info">
+                    <div class="hero-info-item">
+                        <span class="info-label">NAME</span>
+                        <strong>Mukund Kumar Soni</strong>
+                    </div>
+                    <div class="hero-info-item">
+                        <span class="info-label">DEGREE</span>
+                        <strong>B.Tech CSE — Artificial Intelligence</strong>
+                    </div>
+                    <div class="hero-info-item">
+                        <span class="info-label">UNIVERSITY</span>
+                        <strong>NIAT × Geeta University</strong>
+                    </div>
+                    <div class="hero-info-item">
+                        <span class="info-label">STATUS</span>
+                        <strong><span class="mini-dot"></span> Learning • Building • Growing</strong>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <a class="btn primary" href="#projects">View My Journey →</a>
+                    <a class="btn secondary" href="#about">About Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-head">
+                <div class="kicker">01 — About Me</div>
+                <h2>Curious by nature. Builder by choice.</h2>
+                <p>A quick look at who I am and what drives me toward technology.</p>
+            </div>
+            <div class="about">
+                <div class="card">
+                    <h3>Who I Am</h3>
+                    <p>
+                        I am <span class="accent">Mukund Kumar Soni</span>, 19 years old,
+                        currently pursuing my first year of B.Tech in Computer Science and
+                        Engineering with Artificial Intelligence at
+                        <strong>NIAT (NxtWave Institute of Advanced Technologies) × Geeta University</strong>.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>What I Enjoy</h3>
+                    <p>
+                        I love <span class="accent">coding, creating new projects and making websites</span>.
+                        I enjoy experimenting with ideas, solving problems and learning by building.
+                        I am always ready to learn something new.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-head">
+                <div class="kicker">02 — My Skills</div>
+                <h2>Currently learning & improving.</h2>
+                <p>Building a strong foundation in programming and modern web development.</p>
+            </div>
+            <div class="skills">
+                <div class="skill">
+                    <div class="symbol">🐍</div>
+                    <h3>Python</h3>
+                    <p>Programming & Logic</p>
+                </div>
+                <div class="skill">
+                    <div class="symbol">◈</div>
+                    <h3>HTML</h3>
+                    <p>Web Structure</p>
+                </div>
+                <div class="skill">
+                    <div class="symbol">✦</div>
+                    <h3>CSS</h3>
+                    <p>Design & Layout</p>
+                </div>
+                <div class="skill">
+                    <div class="symbol">JS</div>
+                    <h3>JavaScript</h3>
+                    <p>Web Interactivity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-head">
+                <div class="kicker">03 — Projects</div>
+                <h2>Ideas I'm turning into reality.</h2>
+                <p>Every project is a chance to learn something new and become a better developer.</p>
+            </div>
+            <div class="projects">
+                <div class="project">
+                    <div class="num">PROJECT 01</div>
+                    <h3>Creative Websites</h3>
+                    <p>Creating clean, modern and responsive websites while improving my HTML and CSS skills.</p>
+                    <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Responsive</span></div>
+                </div>
+                <div class="project">
+                    <div class="num">PROJECT 02</div>
+                    <h3>Interactive Web Apps</h3>
+                    <p>Exploring JavaScript to turn static pages into useful and interactive web experiences.</p>
+                    <div class="tags"><span class="tag">JavaScript</span><span class="tag">UI</span><span class="tag">Web</span></div>
+                </div>
+                <div class="project">
+                    <div class="num">PROJECT 03</div>
+                    <h3>Python Projects</h3>
+                    <p>Practising programming fundamentals through small projects and problem-solving challenges.</p>
+                    <div class="tags"><span class="tag">Python</span><span class="tag">Logic</span><span class="tag">Coding</span></div>
+                </div>
+                <div class="project">
+                    <div class="num">PROJECT 04</div>
+                    <h3>Future AI Projects</h3>
+                    <p>My long-term direction is to combine software development and AI to solve meaningful problems.</p>
+                    <div class="tags"><span class="tag">AI</span><span class="tag">Python</span><span class="tag">Innovation</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision">
+        <div class="container">
+            <div class="vision">
+                <div class="kicker">04 — My Vision</div>
+                <h2>Learn. Build. Improve. Repeat.</h2>
+                <p>
+                    My goal is to become a skilled software developer and AI professional.
+                    I want to keep learning new technologies, build meaningful projects,
+                    and use Computer Science and Artificial Intelligence to create solutions
+                    for real-world problems.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <h3>Mukund<span>.</span></h3>
+            <p>Code with curiosity. Build with purpose.</p>
+            <p>© 2026 Mukund Kumar Soni • Personal Portfolio</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
